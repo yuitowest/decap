@@ -41,6 +41,17 @@ class Decap extends Flux {
         return state;
       });
     });
+    this.on("updateSettings", (channelId, upstreamToken) => {
+      return this.update(state => {
+        state.settings = {
+          channelId: channelId,
+          upstreamToken: upstreamToken
+        };
+        window.localStorage.setItem(
+            "decapSettings", JSON.stringify(state.settings));
+        return state;
+      });
+    });
   }
   render(state) {
     return <DecapComponent {...state} />;
@@ -56,10 +67,18 @@ const decap = new Decap({
     activeSourceId: "",
     isPlaying: false,
     anzu: null,
-    sources: []
+    sources: [],
+    settings: {
+    }
   },
   middlewares: [
   ]
 });
 
-decap.update(state => (state));
+decap.update(state => {
+  let settings = JSON.parse(window.localStorage.getItem("decapSettings"));
+  if (settings !== null) {
+    state.settings = settings;
+  }
+  return state;
+});
