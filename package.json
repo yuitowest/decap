@@ -11,16 +11,16 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.4.0",
-    "babel-eslint": "^4.1.6",
+    "babel-eslint": "^5.0.0-beta6",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "del": "^2.2.0",
-    "electron-connect": "^0.3.4",
-    "electron-packager": "^5.2.0",
-    "electron-prebuilt": "^0.36.3",
+    "electron-connect": "^0.3.5",
+    "electron-packager": "^5.2.1",
+    "electron-prebuilt": "^0.36.4",
     "envify": "^3.4.0",
-    "eslint-plugin-react": "^3.14.0",
+    "eslint-plugin-react": "^3.15.0",
     "flumpt": "^0.1.4",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
@@ -36,9 +36,9 @@
     "react-dom": "^0.14.6",
     "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
-    "watchify": "^3.6.1"
+    "watchify": "^3.7.0"
   },
   "dependencies": {
-    "anzu-js-sdk": "github:shiguredo/anzu-js-sdk#0.3.0"
+    "anzu-js-sdk": "github:shiguredo/anzu-js-sdk#0.4.0"
   }
 }
