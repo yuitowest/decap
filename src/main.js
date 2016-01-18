@@ -19,6 +19,10 @@ function newMainWindow() {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
+  if (process.env.NODE_ENV !== "production") {
+      mainWindow.openDevTools();
+  }
+
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
