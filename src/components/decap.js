@@ -1,26 +1,24 @@
 import React from "react"; // eslint-disable-line
 import { Component } from "flumpt";
 import { HeaderComponent } from "./header";
-import { SourcesComponent } from "./sources";
-import { VideoComponent } from "./video";
+import { UpstreamComponent } from "./upstream";
+import { DownstreamComponent } from "./downstream";
+import { SettingsComponent } from "./settings";
 
 export class DecapComponent extends Component {
-  componentDidMount() {
-    this.dispatch("getSources");
-  }
   render() {
     return(
       <div className="window">
-        <HeaderComponent activeSourceId={ this.props.activeSourceId } />
+        <HeaderComponent {...this.props} />
         <div className="window-content">
-          <div className="pane-group">
-            <div className="pane pane-sm sidebar">
-              <SourcesComponent sources={ this.props.sources } activeSourceId={ this.props.activeSourceId } />
-            </div>
-            <div className="pane">
-              <VideoComponent activeSourceId={ this.props.activeSourceId } />
-            </div>
-          </div>
+          {(() => {
+            switch (this.props.page) {
+              case "upstream": return <UpstreamComponent {...this.props} />;
+              case "downstream": return <DownstreamComponent {...this.props} />;
+              case "settings": return <SettingsComponent {...this.props} />;
+              default: return <UpstreamComponent {...this.props} />;
+            }
+          })()}
         </div>
       </div>
     );

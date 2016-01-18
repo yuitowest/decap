@@ -35,6 +35,12 @@ class Decap extends Flux {
         return state;
       });
     });
+    this.on("updatePage", (page) => {
+      return this.update(state => {
+        state.page = page;
+        return state;
+      });
+    });
   }
   render(state) {
     return <DecapComponent {...state} />;
@@ -46,6 +52,7 @@ const decap = new Decap({
     render(el, document.querySelector("#app"));
   },
   initialState: {
+    page: "upstream",
     activeSourceId: "",
     isPlaying: false,
     anzu: null,

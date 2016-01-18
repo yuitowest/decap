@@ -1,40 +1,33 @@
 import React from "react"; // eslint-disable-line
 import { Component } from "flumpt";
-import Anzu from "anzu-js-sdk";
-import { CHANNEL_ID, UPSTREAM_TOKEN } from "../constants";
 
 
 export class HeaderComponent extends Component {
-  handleStart(e) {
+  handleChangePage(page, e) {
     e.preventDefault();
-    if (this.props.activeSourceId === "") {
-      return;
-    }
-    let constraints =  {
-      audio: false,
-      video: {
-        mandatory: {
-          chromeMediaSource: "desktop",
-          chromeMediaSourceId: this.props.activeSourceId,
-          minWidth: 640,
-          maxWidth: 640,
-          minHeight: 480,
-          maxHeight: 480
-        }
-      }
-    };
-    let anzu = new Anzu("upstream");
-    anzu.start(CHANNEL_ID, UPSTREAM_TOKEN, constraints);
-    this.dispatch("setAnzu", anzu);
+    this.dispatch("updatePage", page);
   }
   render() {
+    let buttonClass = "btn btn-default";
+    let buttonActiveClass = "btn btn-default active";
     return(
       <header className="toolbar toolbar-header">
         <h1 className="title">decap</h1>
         <div className="toolbar-actions">
-          <button className="btn btn-default pull-right" onClick={ this.handleStart.bind(this) }>
-            <span className="icon icon-play"></span>
-          </button>
+          <div className="btn-group pull-right">
+            <button className={this.props.page === "upstream" ? buttonActiveClass : buttonClass}
+             onClick={this.handleChangePage.bind(this, "upstream")}>
+              <span className="icon icon-upload"></span>
+            </button>
+            <button className={this.props.page === "downstream" ? buttonActiveClass : buttonClass}
+             onClick={this.handleChangePage.bind(this, "downstream")}>
+              <span className="icon icon-download"></span>
+            </button>
+            <button className={this.props.page === "settings" ? buttonActiveClass : buttonClass}
+             onClick={this.handleChangePage.bind(this, "settings")}>
+              <span className="icon icon-cog"></span>
+            </button>
+          </div>
         </div>
       </header>
     );
