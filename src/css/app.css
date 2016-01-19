@@ -1,4 +1,14 @@
 #video {
-  width: 640;
-  height: 480;
+  width: 640px;
+  height: 480px;
+}
+.video-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+  font-size: 300px;
+  text-align: center;
+  color: rgba(255, 0, 0, 0.7);
 }

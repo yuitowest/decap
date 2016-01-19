@@ -35,6 +35,14 @@ class Decap extends Flux {
         return state;
       });
     });
+    this.on("stopAnzu", (anzu) => {
+      return this.update(state => {
+        state.anzu.disconnect();
+        state.anzu = null;
+        state.isPlaying = false;
+        return state;
+      });
+    });
     this.on("updatePage", (page) => {
       return this.update(state => {
         state.page = page;
